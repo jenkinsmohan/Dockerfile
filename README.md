@@ -1,4 +1,4 @@
-### Dockerfile 
+### Dockerfile Instructions
 
 ### IBM Java SDK UBI is not available on public docker yet. Use regular base as builder until this is ready. For reference: https://github.com/ibmruntimes/ci.docker/tree/master/ibmjava/8/sdk/ubi-min
 
@@ -19,7 +19,7 @@
 	COPY pom.xml .
 	RUN mvn -N io.takari:maven:wrapper -Dmaven=3.5.0
 
-### 6. set env variable
+### 6. set Variable
 	ARG bx_dev_user=root
 	ARG bx_dev_userid=1000
 	RUN export BX_DEV_USER=$bx_dev_user
@@ -30,7 +30,7 @@
 ### 7. Java base Image
 	FROM adoptopenjdk/openjdk8:ubi-jre
 	
-### 8. Copy over app from builder image into the runtime image
+### 8. Copy and rename jar file
 	RUN mkdir /opt/app
 	COPY --from=builder /app/target/cirrusjavacrontemplate-1.0-SNAPSHOT.jar /opt/app/app.jar
 
