@@ -1,6 +1,5 @@
 # Dockerfile 
-## IBM Java SDK UBI is not available on public docker yet. Use regular
-## base as builder until this is ready. For reference:
+## IBM Java SDK UBI is not available on public docker yet. Use regular base as builder until this is ready. For reference:
 ## https://github.com/ibmruntimes/ci.docker/tree/master/ibmjava/8/sdk/ubi-min
 
 
