@@ -1,18 +1,76 @@
+Pre-requisite
+=============
+Ensure two secrets are exported in your local machine
+
+For Mac
+-------
+In a terminal, type
+
+export FIRST_SECRET='This is my first secret'
+
+export SECOND_SECRET='This is my second secret'
+
+For Windows
+-----------
+Go to Edit the System Environment Variables,
+
+Click on Advanced--> Environment Variables--> click on New
+
+Provide Varialble name as FIRST_SECRET and Variable Value as This is my first secret
+
+Similarly Provide variable name as SECOND_SECRET and Variable Value as This is my second secret
+
+Using Maven
+===========
+To build and run locally,
+
+change the directory to the project root folder then run :
+
+mvn clean install
+
+change the directory to the target folder
+
+java -jar cirrusjavacrontemplate-1.0-SNAPSHOT.jar
+
+
+Using Docker
+============
+Ensure docker is installed 
+
+Change the directory to the project root folder then run :
+
+docker build -t cirrusjavacrontemplate .
+
+docker run --env FIRST_SECRET --env SECOND_SECRET cirrusjavacrontemplate
+
+After Local / Docker Build
+==========================
+Verify the end points available at
+
+Health : http://localhost:8080/rest/health
+
+Application : http://localhost:8080/
+
+
 ### Dockerfile Instructions
 
 ### IBM Java SDK UBI is not available on public docker yet. Use regular base as builder until this is ready. For reference: https://github.com/ibmruntimes/ci.docker/tree/master/ibmjava/8/sdk/ubi-min
 
-### 1. Build base Image
-	FROM ibmjava:8-sdk AS builder
+Build base Image
+================
+FROM ibmjava:8-sdk AS builder
 
-### 2. Add meta information
-	LABEL maintainer="IBM Java Engineering at IBM Cloud"
+Add meta information
+====================
+LABEL maintainer="IBM Java Engineering at IBM Cloud"
 	
-### 3. Creating app dir
-	WORKDIR /app
+Creating app dir
+================
+WORKDIR /app
 
-### 4. Maven Installation
-	RUN apt-get update \
+Maven Installation
+=================
+RUN apt-get update \
   	&& apt-get install -y --no-install-recommends maven=3.6.0-1~18.04.1
 
 ### 5. Copy pom.xml
