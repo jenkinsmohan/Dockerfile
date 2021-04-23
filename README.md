@@ -52,25 +52,23 @@ Health : http://localhost:8080/rest/health
 Application : http://localhost:8080/
 
 
-### Dockerfile Instructions
+# Dockerfile Instructions
 
 ### IBM Java SDK UBI is not available on public docker yet. Use regular base as builder until this is ready. For reference: https://github.com/ibmruntimes/ci.docker/tree/master/ibmjava/8/sdk/ubi-min
 
-Build base Image
-================
-FROM ibmjava:8-sdk AS builder
+### 1. Build base Image
 
-Add meta information
-====================
-LABEL maintainer="IBM Java Engineering at IBM Cloud"
+	FROM ibmjava:8-sdk AS builder
+
+### 2. Add meta information
+
+	LABEL maintainer="IBM Java Engineering at IBM Cloud"
 	
-Creating app dir
-================
-WORKDIR /app
+### 3. Creating app dir
+	WORKDIR /app
 
-Maven Installation
-=================
-RUN apt-get update \
+### 4.Maven Installation
+	RUN apt-get update \
   	&& apt-get install -y --no-install-recommends maven=3.6.0-1~18.04.1
 
 ### 5. Copy pom.xml
