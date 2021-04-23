@@ -19,7 +19,7 @@
 	COPY pom.xml .
 	RUN mvn -N io.takari:maven:wrapper -Dmaven=3.5.0
 
-### 6. set Variable
+### 6. Set variable
 	ARG bx_dev_user=root
 	ARG bx_dev_userid=1000
 	RUN export BX_DEV_USER=$bx_dev_user
